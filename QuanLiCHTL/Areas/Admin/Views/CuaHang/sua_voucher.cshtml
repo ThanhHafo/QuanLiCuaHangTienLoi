@@ -1,0 +1,61 @@
+﻿@using QuanLiCHTL.Models;
+@model IEnumerable<voucher>
+@{
+    ViewBag.Title = "sua_voucher";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<button class="btn btn-success" onclick="window.location.href='@Url.Action("ds_voucher","CuaHang")'">Danh sách Voucher</button>
+<button class="btn btn-success" onclick="window.location.href='@Url.Action("them_voucher","CuaHang")'">Thêm Voucher</button>
+<button class="btn btn-success" onclick="window.location.href='@Url.Action("sua_voucher","CuaHang")'">Sửa Voucher</button>
+<button class="btn btn-success" onclick="window.location.href='@Url.Action("xoa_voucher","CuaHang")'">Xoá Voucher</button>
+<hr />
+
+<h4>Sửa Voucher</h4>
+
+@using (Html.BeginForm("sua_voucher", "CuaHang", FormMethod.Get))
+{
+    <p>
+        Tìm Voucher: @Html.TextBox("barcode")
+        <input type="submit" class="btn btn-success" value="Tìm kiếm" />
+    </p>
+}
+<div style=" border: 3px white solid; border-radius:3px 3px;margin:20px;">
+    @using (Html.BeginForm("sua_voucher", "CuaHang", FormMethod.Post))
+    {
+
+        <table class="table table-hover" style="overflow-y: scroll;margin:10px 0px 0px 50px;">
+            <thead>
+                <tr>
+                    <th>STT</th>
+                    <th>Barcode</th>
+                    <th>Mô tả</th>
+                    <th>Giảm giá</th>
+                    <th>Ngày sử dụng</th>
+                    <th>Hạn sử dụng</th>
+                    <th>Lượt sử dụng</th>
+
+                </tr>
+            </thead>
+            <tbody>
+                @{ int stt = 1;}
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@stt</td>
+                        <td><input type="text" size="10" readonly name="vbc" value="@item.barcode" /></td>
+                        <td><input type="text" size="30" name="vmt" value="@item.mota" /></td>
+                        <td><input type="text" size="5" name="vgg" value="@item.giamgia" /></td>
+                        <td><input type="text" size="10" name="vnsd" value="@item.ngaysudung" /></td>
+                        <td><input type="text" size="10" name="vhsd" value="@item.hsd" /></td>
+                        <td><input type="text" size="3" name="vlsd" value="@item.luotsudung" /></td>
+                    </tr>
+                    stt++;
+                }
+            </tbody>
+        </table>
+        <hr />
+        <input type="submit" class="btn btn-success" value="Xác nhận sửa" />
+    }
+</div>
+

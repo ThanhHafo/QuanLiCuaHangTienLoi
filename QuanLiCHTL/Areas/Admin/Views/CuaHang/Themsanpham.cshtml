@@ -1,0 +1,106 @@
+﻿@using QuanLiCHTL.Models
+@model IEnumerable<sanpham_ncc>
+@{
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<button class="btn btn-success" onclick="window.location.href='@Url.Action("Quanlisanpham","CuaHang")'">Quản lí sản phẩm</button>
+<button class="btn btn-success" onclick="window.location.href='@Url.Action("Themsanpham","CuaHang")'">Thêm sản phẩm</button>
+<button class="btn btn-success" onclick="window.location.href='@Url.Action("Suasanpham","CuaHang")'">Sửa sản phẩm</button>
+<hr />
+<script>
+    function openModal() {
+        document.getElementById('myModal').style.display = 'block';
+    }
+    function closeModal() {
+        document.getElementById('myModal').style.display = 'none';
+    }
+</script>
+
+<button class="btn btn-success" onclick="openModal()">Nhà cung cấp Cường Hào</button>
+<div id="myModal" class="modal">
+    <div class="modal-content" style="width:900px">
+        <span class="close" onclick="closeModal()">&times;</span>
+        <p>Danh sách sản phẩm của nhà cung cấp</p>
+        <table class="table table-hover" style="overflow-y: scroll;margin:10px 0px 0px 50px;">
+            <thead>
+                <tr>
+                    <th></th>
+                    <th>Barcode</th>
+                    <th>Tên sản phẩm</th>
+                    <th>Đơn giá</th>
+                    <th style="width:150px;"></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var sanpham in ViewBag.ncc)
+                {
+                    <tr>
+                        <td></td>
+                        <td>@sanpham.barcode</td>
+                        <td>@sanpham.tensp</td>
+                        <td>@sanpham.dongia</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+
+</div>
+
+@using (Html.BeginForm("Themsanpham", "CuaHang", FormMethod.Post))
+{
+    <h4>Barcode:@Html.TextBox("tim") </h4>
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $("#barcodeInput").keypress(function (e) {
+                if (e.which === 13) {
+                    $(this).closest('form').submit();
+                }
+            });
+        });
+    </script>
+}
+
+@using (Html.BeginForm("Them", "CuaHang", FormMethod.Post))
+{
+    foreach (var sanpham in Model)
+    {
+        <h4>Tên sản phẩm: </h4>
+        <input type="text" size="35" name="sTenSp" value="@sanpham.tensp" required />
+        <h4>Mô tả sản phẩm: </h4>
+        <input type="text" size="70" name="sMoTa"  required />
+        <h4>Giá: </h4>
+        <input type="text" size="70" name="sGia"  required />
+        <br />
+        <button type="submit" class="btn btn-success" style="margin-top:10px;">Thêm</button>
+    }
+}
+<div style="width: 1000px; border: 3px white solid; border-radius:3px 3px;margin:20px;">
+    <h4>Lịch sử thêm sản phẩm gần đây</h4>
+    <table class="table table-hover" style="overflow-y: scroll;margin:10px 0px 0px 50px;">
+        <thead>
+            <tr>
+                <th></th>
+                <th>Barcode</th>
+                <th>Tên sản phẩm</th>
+                <th>Ngày thêm</th>
+                <th style="width:150px;"></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var sanpham in ViewBag.ls)
+            {
+                <tr>
+                    <td></td>
+                    <td>@sanpham.barcode</td>
+                    <td>@sanpham.tensp</td>
+                    <td>@sanpham.ngaycapnhat</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+

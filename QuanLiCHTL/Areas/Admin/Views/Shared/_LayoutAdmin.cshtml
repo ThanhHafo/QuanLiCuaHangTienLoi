@@ -1,0 +1,118 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="~/Scripts/mycss.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+</head>
+
+<body style="background-color: #bbcfcc">
+    <div class="heads">
+        <a class="head" href="@Url.Action("Index","CuaHang")"><img class="logo" src="~/Images/logo.png"></a>
+        <header class="banner">
+            <p class="textnav">VN001</p>
+            <a class="textnav"><span class="glyphicon glyphicon-bell"></span>Thông báo</a>
+            <div id="current-time" style="color:white;float:left;margin:10px"></div>
+            <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+            <script>
+                function updateDateTime() {
+                    var currentTimeElement = document.getElementById('current-time');
+                    var now = new Date();
+                    var formattedTime = now.toLocaleString();
+                    currentTimeElement.textContent = formattedTime;
+                }
+                setInterval(updateDateTime, 1000);
+                updateDateTime();
+            </script>
+        </header>
+    </div>
+    <div class="contain">
+        <div class="menu">
+            <ul class="nav flex-column" id="nav_accordion">
+                <li class="nav-item">
+                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseQLSP" style="color: black">
+                        <i class="fa fa-caret-down"></i>
+                        Quản lí sản phẩm <span class="glyphicon glyphicon-menu-down"></span>
+                    </a>
+                    <div id="collapseQLSP" class="collapse">
+                        <div>
+                            <a class="navitems" href="@Url.Action("Mavach","CuaHang")"><span class="glyphicon glyphicon-barcode"></span> Mã sản phẩm</a>
+                            <br />
+                            <a class="navitems" href="@Url.Action("Quanlisanpham","CuaHang")"><span class="glyphicon glyphicon-pencil"></span> Quản lí</a>
+                        </div>
+                    </div>
+                </li>
+
+                <li class="nav-item" style="margin-top:10px;">
+                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" style="color: black">
+                        Báo cáo <span class="glyphicon glyphicon-menu-down"></span>
+                    </a>
+                    <div id="collapseTwo" class="collapse">
+                        <a class="navitems" href="@Url.Action("doanhthu","CuaHang")">Doanh thu ngày</a>
+                        <br />
+                        <a class="navitems" href="@Url.Action("doanhthuthang","CuaHang")">Doanh thu tháng</a>
+                    </div>
+                </li>
+                <li class="nav-item" style="margin-top:10px;">
+                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseDh" style="color: black">
+                        Nhập hàng <span class="glyphicon glyphicon-menu-down"></span>
+                    </a>
+                    <div id="collapseDh" class="collapse">
+                        <a class="navitems" href="@Url.Action("dathang","CuaHang")">Đặt hàng</a>
+                        <br />
+                        <a class="navitems" href="@Url.Action("phieunhap","CuaHang")">Phiếu nhập</a>
+                        <br />
+                        <a class="navitems" href="@Url.Action("lichsu","CuaHang")">Lịch sử</a>
+                    </div>
+                </li>
+                <li class="nav-item" style="margin-top:10px;">
+                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsehh" style="color: black">
+                        Huỷ hàng <span class="glyphicon glyphicon-menu-down"></span>
+                    </a>
+                    <div id="collapsehh" class="collapse">
+                        <a class="navitems" href="@Url.Action("dshuyhang", "CuaHang")">Danh sách hàng hủy</a>
+                        <br />
+                        <a class="navitems" href="@Url.Action("huyhang", "CuaHang")">Hủy hàng</a>
+                        <br />
+                        <a class="navitems" href="@Url.Action("hangdahuy", "CuaHang")">Hàng đã hủy trong tháng</a>
+                    </div>
+                </li>
+                <li class="nav-item" style="margin-top:10px;">
+                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsehd" style="color: black">
+                        Quản lí hóa đơn <span class="glyphicon glyphicon-menu-down"></span>
+                    </a>
+                    <div id="collapsehd" class="collapse">
+                        <a class="navitems" href="@Url.Action("ql_hoadon","CuaHang")">Danh sách Hoá đơn</a>
+                        <br />
+                        <a class="navitems" href="@Url.Action("hoadonhuy","CuaHang")">Hóa đơn bị hủy</a>
+                    </div>
+                </li>
+                <li class="nav-item" style="margin-top:10px;">
+                    <a class="nav-link collapsed" href="@Url.Action("DsNv","CuaHang")" data-toggle="collapse" data-target="#collapse" style="color: black">
+                        Quản lí nhân viên
+                    </a>
+                </li>
+                <li class="nav-item" style="margin-top:10px;">
+                    <a class="nav-link collapsed" href="@Url.Action("ds_voucher","CuaHang")" data-toggle="collapse" data-target="#collapse" style="color: black">
+                        Quản lí Voucher
+                    </a>
+                </li>
+                <li class="nav-item" style="margin-top:10px;">
+                    <a class="nav-link collapsed" href="@Url.Action("ds_khachhang","CuaHang")" data-toggle="collapse" data-target="#collapsekh" style="color: black">
+                        Quản lí khách hàng 
+                    </a>
+                    
+                </li>
+            </ul>
+        </div>
+        <div class="main">
+            @RenderBody()
+        </div>
+    </div>
+</body>
+</html>

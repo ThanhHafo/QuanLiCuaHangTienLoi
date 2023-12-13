@@ -1,0 +1,29 @@
+﻿
+@{
+    Layout = null;
+}
+
+<button type="submit" onclick="openDki()" class="buttontt">Đăng ký khách hàng</button>
+<div id="dki" class="modal">
+    <div class="modal-content" style="width:500px">
+        <span class="close" onclick="closeDki()">&times;</span>
+        @using (Html.BeginForm("dangki", "ThanhToan", FormMethod.Post))
+        {
+            <p>Nhập số điện thoại khách hàng:</p>
+            <input type="text" name="sdt" />
+            <p>Nhập tên khách hàng</p>
+            <input type="text" name="ten" />
+            <hr />
+            <button class="btn btn-success" type="submit">Xác nhận</button>
+        }
+    </div>
+</div>
+
+<script>
+    function openDki() {
+        document.getElementById('dki').style.display = 'block';
+    }
+    function closeDki() {
+        document.getElementById('dki').style.display = 'none';
+    }
+</script>

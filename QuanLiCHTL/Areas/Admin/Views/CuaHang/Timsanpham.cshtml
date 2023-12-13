@@ -1,0 +1,43 @@
+﻿@using QuanLiCHTL.Models;
+@model IEnumerable<sanpham>
+
+@{
+    Layout = null;
+}
+
+@using (Html.BeginForm("Quanlisanpham", "CuaHang", FormMethod.Get))
+{
+    <p>
+        Tìm sản phẩm: @Html.TextBox("tim")
+        <input type="submit" class="btn btn-success" value="Tìm kiếm" />
+    </p>
+}
+
+<table class="table table-hover" style="overflow-y: scroll;margin:10px 0px 0px 50px;">
+    <thead>
+        <tr>
+            <th></th>
+            <th>Id</th>
+            <th>Barcode</th>
+            <th>Tên sản phẩm</th>
+            <th>Mô tả</th>
+            <th>Giá</th>
+            <th>Tồn kho</th>
+            <th style="width:150px;"></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var sanpham in Model)
+        {
+            <tr>
+                <td></td>
+                <td>@sanpham.id</td>
+                <td>@sanpham.barcode</td>
+                <td>@sanpham.tensp</td>
+                <td>@sanpham.mota</td>
+                <td>@sanpham.gia</td>
+                <td>@sanpham.soluong</td>
+            </tr>
+        }
+    </tbody>
+</table>

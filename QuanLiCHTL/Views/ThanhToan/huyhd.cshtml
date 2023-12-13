@@ -1,0 +1,25 @@
+﻿
+@{
+    Layout = null;
+}
+
+<button class="buttontt" onclick="openHuy()">Huỷ HĐ</button>
+<div id="huyhd" class="modal">
+    <div class="modal-content" style="width:500px">
+        <span class="close" onclick="closeHuy()">&times;</span>
+        @using (Html.BeginForm("HuyHD", "ThanhToan", FormMethod.Post))
+        {
+            <input type="text" name="lydo" style="width:400px;height:40px" placeholder="Nhập lí do hủy hóa đơn" />
+            <button class="btn btn-success" type="submit">Xác nhận hủy</button>
+        }
+    </div>
+</div>
+
+<script>
+    function openHuy() {
+        document.getElementById('huyhd').style.display = 'block';
+    }
+    function closeHuy() {
+        document.getElementById('huyhd').style.display = 'none';
+    }
+</script>

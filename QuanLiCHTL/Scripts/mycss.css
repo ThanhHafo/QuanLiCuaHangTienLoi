@@ -1,0 +1,286 @@
+﻿.heads{
+    height: 42px;
+    width: 1472px;
+}
+
+.head {
+    padding: 5px 0;
+    background: #0094ff;
+    height: 42px;
+    width: 200px;
+    text-align: center;
+    border: 6px solid #c0efe7;
+    display: block;
+    float: left;
+}
+.menu {
+    margin-top: 5px;
+    width: 200px;
+    height: 800px;
+    background: #b4f1e0;
+    float: left;
+}
+
+.contain{
+    width:1472px;
+    height: 500px;
+}
+
+.banner {
+    background: #0094ff;
+    height: 42px;
+    width: 1272px;
+    display: block;
+    float: right;
+}
+
+.logo {
+    width: 69px;
+    height: 22px;
+    display: inline-block;
+    margin-left: 10px;
+}
+
+.main {
+    margin-top: 5px;
+    background: #b4f1e0;
+    height: 800px;
+    width: 1250px;
+    float: right;
+}
+
+.img-store {
+    height: 200px;
+    width: 1150px;
+}
+
+.textnav {
+    float: right;
+    color: white;
+    margin: 10px 0px 10px 10px;
+}
+
+.textwhite {
+    color: white;
+    margin: 10px 0px 10px 10px;
+}
+
+.navitems{
+    color: black;
+    margin-left:30px ;
+}
+
+.statistic {
+    width:1040px;
+    height: 150px;
+    border:2px solid white;
+    background-color:transparent;
+    border-radius: 5px 5px;
+    padding: 10px;
+    margin-left:55px;
+}
+
+.statistics-contain {
+    background-color: aqua;
+    width: 220px;
+    height: 80px;
+    border-radius:7px;
+    float:left;
+    margin:25px 15px 35px 15px;
+}
+
+.icon {
+    width: 60px;
+    height: 50px;
+    float:left;
+    margin:15px 5px 15px 5px;
+}
+
+.top {
+    height: 40px;
+    width: 1490px;
+    float: left;
+    background-color:#612794;
+    display:inline-block;
+}
+
+
+.thanhtoan {
+    height: 630px;
+    width: 1490px;
+    margin-top:10px;
+    border-radius: 5px 5px;
+    float: left;
+}
+
+.left {
+    width: 1085px;
+    height: 490px;
+    background-color: papayawhip;
+    float: left;
+    margin-left: 5px;
+    border-radius: 4px 4px;
+}
+
+.kmai {
+    margin-top: 10px;
+    width: 1085px;
+    height: 170px;
+    float: left;
+    margin-left: 5px;
+    background-color: papayawhip;
+    border-radius: 4px 4px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size:14px;
+}
+
+.right {
+    width: 395px;
+    height: 130px;
+    background-color: papayawhip;
+    float: right;
+    margin-left: 5px;
+    margin-bottom:10px;
+    border-radius: 4px 4px;
+    display:flex;
+}
+
+.newitem {
+    width: 395px;
+    height: 240px;
+    background-color: papayawhip;
+    float: right;
+    margin-left: 5px;
+    border-radius: 4px 4px;
+}
+
+.tkhoadon {
+    width: 395px;
+    height: 140px;
+    background-color: papayawhip;
+    float: right;
+    margin-left: 5px;
+    margin-top: 10px;
+    border-radius: 4px 4px;
+    font-size:23px;
+    font-family:'Times New Roman';
+}
+
+.hoadon{
+    width:840px;
+    border:solid 1px;
+    margin:10px;
+}
+
+.buttontt {
+    width: 100px;
+    height: 100px;
+    margin:10px 0px 0px 20px;
+    background-color: #612794;
+    color: white;
+    border-radius:6px 6px;
+}
+
+.ptk {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0,0,0,0.4);
+}
+
+
+.modal-content {
+    background-color: #fefefe;
+    margin: 15% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+}
+
+/* Style cho đóng modal */
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+    .close:hover,
+    .close:focus {
+        color: black;
+        text-decoration: none;
+        cursor: pointer;
+    }
+/* Thiết lập font chữ và màu sắc chung */
+input[type="text"] {
+    font-family: 'Arial', sans-serif;
+    font-size: 16px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
+    height:25px;
+}
+
+    /* Khi trường nhập liệu được focus (được chọn) */
+    input[type="text"]:focus {
+        outline: none;
+        border-color: #4CAF50; /* Màu sắc khi focus */
+        box-shadow: 0 0 5px rgba(81, 203, 238, 1); /* Hiệu ứng đổ bóng khi focus */
+    }
+
+
+.image-button {
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+}
+
+    /* Hiệu ứng khi hover */
+    .image-button:hover img {
+        opacity: 0.7;
+    }
+
+    /* Ẩn mọi hiệu ứng khi đang nhấn */
+    .image-button:active img {
+        opacity: 1;
+    }
+.quantity-container {
+    display: flex;
+    align-items: center;
+    margin-bottom:15px;
+}
+
+.quantity-input {
+    width: 40px;
+    height:20px;
+    text-align: center;
+    margin: 0px 5px 0px 5px;
+}
+
+.quantity-button {
+    cursor: pointer;
+    font-size: 18px;
+    user-select: none;
+    height:25px;
+}
+
+.delete-button {
+    cursor: pointer;
+    font-size: 18px;
+    user-select: none;
+    margin-left: 10px;
+}

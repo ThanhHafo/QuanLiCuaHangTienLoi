@@ -1,0 +1,21 @@
+﻿
+@{
+    ViewBag.Title = "xoa_voucher";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<button class="btn btn-success" onclick="window.location.href='@Url.Action("ds_voucher","CuaHang")'">Danh sách Voucher</button>
+<button class="btn btn-success" onclick="window.location.href='@Url.Action("them_voucher","CuaHang")'">Thêm Voucher</button>
+<button class="btn btn-success" onclick="window.location.href='@Url.Action("sua_voucher","CuaHang")'">Sửa Voucher</button>
+<button class="btn btn-success" onclick="window.location.href='@Url.Action("xoa_voucher","CuaHang")'">Xoá Voucher</button>
+<hr />
+
+<h4>Xóa Voucher</h4>
+@using (Html.BeginForm("xoa_voucher", "CuaHang", FormMethod.Post))
+{
+    <span>Nhập voucher muốn xóa</span>
+    <input type="text" name="vx" />
+    <p></p>
+    <button class="btn btn-success" type="submit">Xóa</button>
+}
+

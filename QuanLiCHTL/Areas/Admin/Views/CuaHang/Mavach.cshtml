@@ -1,0 +1,18 @@
+﻿
+@{
+    ViewBag.Title = "Mavach";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+@model string
+
+<form action="@Url.Action("GenerateBarcode", "CuaHang")" method="post">
+    <label for="barcodeData">Nhập dữ liệu mã vạch:</label>
+    <input type="text" name="barcodeData" required />
+    <button type="submit">Tạo mã vạch</button>
+</form>
+
+@if (!string.IsNullOrEmpty(Model))
+{
+    <img src="@Url.Action("GenerateBarcode", "Barcode", new { barcodeData = Model })" alt="Barcode" />
+}

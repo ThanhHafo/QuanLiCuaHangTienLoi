@@ -1,0 +1,55 @@
+﻿@using QuanLiCHTL.Models;
+
+@{
+    ViewBag.Title = "doanhthu";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<body>
+    @using (Html.BeginForm("doanhthu", "CuaHang", FormMethod.Post))
+    {
+        <input type="text" name="ngay" id="datepicker" placeholder="Chọn ngày">
+        <button type="submit" class="btn btn-success">Tìm</button>
+    }
+</body>
+<h4>Danh sách nhân viên đã kết ca @ViewBag.ngay:</h4>
+<table class="table table-hover" style="overflow-y: scroll;margin:10px 0px 0px 50px;">
+    <thead>
+        <tr>
+            <th>ID Nhân viên</th>
+            <th>Giờ vào làm</th>
+            <th>Giờ ra về</th>
+            <th>Kết ca</th>
+            <td>Doanh thu</td>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in ViewBag.kc)
+        {
+            <tr>
+                <td>@item.idnv</td>
+                <td>@item.giovaolam</td>
+                <td>@item.giorave</td>
+                <td>@item.ketca</td>
+                <td>@item.doanhthu</td>
+            </tr>
+        }
+    </tbody>
+</table>
+<h4>Tổng số tiền nhân viên đã kết ca: @ViewBag.tkc</h4>
+<h4>Doanh thu hôm nay: @ViewBag.dt</h4>
+
+
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script>
+    $(function () {
+        // Gắn datepicker cho input với id là 'datepicker'
+        $("#datepicker").datepicker({
+            dateFormat: "dd/mm/yy", // Định dạng ngày tháng năm
+            changeMonth: true,      // Cho phép chọn tháng
+            changeYear: true        // Cho phép chọn năm
+        });
+    });
+</script>

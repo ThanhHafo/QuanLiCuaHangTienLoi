@@ -1,0 +1,126 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Login</title>
+    <link rel="stylesheet" type="text/css" href="~/Content/reset.css">
+    <link rel="stylesheet" type="text/css" href="~/Content/structure.css">
+    <style>
+        table {
+            width: 400px; /* Điều chỉnh chiều rộng của bảng theo nhu cầu của bạn */
+            margin: 10px 0 0 50px;
+        }
+
+        tr {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        td, th {
+            padding: 5px;
+        }
+
+        th {
+            text-align: left; /* Căn trái theo chiều ngang */
+        }
+
+        input {
+            width: 50px; /* Điều chỉnh chiều rộng của ô nhập số lượng theo nhu cầu của bạn */
+        }
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh; /* Chiều cao 100% của viewport */
+            margin: 0;
+            background-color:aqua;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="boxBody" style="width:500px">
+        <table class="table table-hover" id="moneyTable">
+            <thead>
+                <tr>
+                    <th>Mệnh giá VNĐ</th>
+                    <th>Số lượng</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>500.000</td>
+                    <td><input type="text" name="500000" class="moneyInput" oninput="calculateTotal()" /></td>
+                </tr>
+                <tr>
+                    <td>200.000</td>
+                    <td><input type="text" name="200000" class="moneyInput" oninput="calculateTotal()" /></td>
+                </tr>
+                <tr>
+                    <td>100.000</td>
+                    <td><input type="text" name="100000" class="moneyInput" oninput="calculateTotal()" /></td>
+                </tr>
+                <tr>
+                    <td>50.000</td>
+                    <td><input type="text" name="50000" class="moneyInput" oninput="calculateTotal()" /></td>
+                </tr>
+                <tr>
+                    <td>20.000</td>
+                    <td><input type="text" name="20000" class="moneyInput" oninput="calculateTotal()" /></td>
+                </tr>
+                <tr>
+                    <td>10.000</td>
+                    <td><input type="text" name="10000" class="moneyInput" oninput="calculateTotal()" /></td>
+                </tr>
+                <tr>
+                    <td>5.000</td>
+                    <td><input type="text" name="5000" class="moneyInput" oninput="calculateTotal()" /></td>
+                </tr>
+                <tr>
+                    <td>2.000</td>
+                    <td><input type="text" name="2000" class="moneyInput" oninput="calculateTotal()" /></td>
+                </tr>
+                <tr>
+                    <td>1.000</td>
+                    <td><input type="text" name="1000" class="moneyInput" oninput="calculateTotal()" /></td>
+                </tr>
+            </tbody>
+        </table>
+        @using (Html.BeginForm("ketca", "Users", FormMethod.Post))
+        {
+            <button style="float:right;width:80px;height:30px;background-color:aqua;margin:30px;" type="submit">Kết ca</button>
+            <input type="hidden" name="tongkc" id="tong" />
+        }
+        <div style="margin:30px">Tổng tiền kết ca: <span id="totalAmount">0</span></div>
+        
+        <script>
+            function calculateTotal() {
+                var total = 0;
+                var moneyInputs = document.getElementsByClassName('moneyInput');
+
+                for (var i = 0; i < moneyInputs.length; i++) {
+                    var inputValue = parseInt(moneyInputs[i].value) || 0;
+                    var denomination = parseInt(moneyInputs[i].name);
+                    total += inputValue * denomination;
+                }
+
+                document.getElementById('totalAmount').innerText = total.toLocaleString();// Định dạng số với dấu phẩy
+                document.getElementById('tong').value = total.toString();
+            }
+
+            function submitForm() {
+                // Thực hiện các hành động khi nhấn nút "Kết ca"
+                alert("Kết ca thành công!");
+            }
+        </script>
+    </div>
+
+
+</body>
+</html>

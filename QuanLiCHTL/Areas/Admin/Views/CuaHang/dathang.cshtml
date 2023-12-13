@@ -1,0 +1,81 @@
+﻿@using QuanLiCHTL.Models;
+@model IEnumerable<dathang>
+
+@{
+    ViewBag.Title = "Quanlisanpham";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<!DOCTYPE html>
+<h4>Danh sách hàng cần đặt thêm cho cửa hàng</h4>
+<div style="width: 1000px; border: 3px white solid; border-radius:3px 3px;margin:20px;">
+    <table class="table table-hover" style="overflow-y: scroll;margin:10px 0px 0px 50px;">
+        <thead>
+            <tr>
+                <th>Barcode</th>
+                <th>Tên sản phẩm</th>
+                <th>Mô tả</th>
+                <th>Số lượng</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in ViewBag.duoi5)
+            {
+                <tr>
+                    <td>@item.barcode</td>
+                    <td>@item.tensp</td>
+                    <td>@item.mota</td>
+                    <td>@item.soluong</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+@using (Html.BeginForm("dathang", "CuaHang", FormMethod.Post))
+{
+    <span>Nhập Barcode:</span>
+    <input type="text" size="20" name="dhbarcode" />
+    <span>Số lượng:</span>
+    <input type="text" size="10" name="slsp" />
+    <button type="submit" class="btn btn-success">Thêm</button>
+}
+<div style="width: 1000px; border: 3px white solid; border-radius:3px 3px;margin:20px;">
+    <table class="table table-hover" style="overflow-y: scroll;margin:10px 0px 0px 50px;">
+        <thead>
+            <tr>
+                <th>STT</th>
+                <th>Barcode</th>
+                <th>Tên sản phẩm</th>
+                <th>Đơn giá</th>
+                <th>Số lượng</th>
+            </tr>
+        </thead>
+        <tbody>
+            @{
+                int stt = 1;
+            }
+            @foreach (var dathang in Model)
+            {
+                <tr>
+                    <td>@stt</td>
+                    <td>@dathang.barcode</td>
+                    <td>@dathang.tensp</td>
+                    <td>@dathang.gia</td>
+                    <td>@dathang.soluong</td>
+                </tr>
+                stt++;
+            }
+        </tbody>
+    </table>
+    <p>Tổng tiền:@ViewBag.tong</p>
+</div>
+
+@using (Html.BeginForm("xacnhandh", "CuaHang", FormMethod.Post))
+{
+    <button type="submit" class="btn btn-success">Đặt hàng</button>
+}
+@using (Html.BeginForm("Xoadh", "CuaHang", FormMethod.Post))
+{
+    <button type="submit" class="btn btn-success">Xoá đơn hàng</button>
+}

@@ -1,0 +1,26 @@
+﻿
+@{
+    Layout = null;
+}
+
+<button type="submit" onclick="openKhachhang()" class="buttontt">Khách Hàng</button>
+<div id="khachhang" class="modal">
+    <div class="modal-content" style="width:500px">
+        <span class="close" onclick="closeVoucher()">&times;</span>
+        @using (Html.BeginForm("khachhang", "ThanhToan", FormMethod.Post))
+        {
+            <p>Nhập số điện thoại khách hàng</p>
+            <input type="text" name="sdt" />
+            <button type="submit" class="btn btn-success">Nhập</button>
+        }
+    </div>
+</div>
+
+<script>
+    function openKhachhang() {
+        document.getElementById('khachhang').style.display = 'block';
+    }
+    function closeKhachhang() {
+        document.getElementById('khachhang').style.display = 'none';
+    }
+</script>

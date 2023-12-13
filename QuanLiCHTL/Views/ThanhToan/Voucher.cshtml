@@ -1,0 +1,26 @@
+﻿
+@{
+    Layout = null;
+}
+
+<button type="submit" onclick="openVoucher()" class="buttontt">Voucher</button>
+<div id="voucher" class="modal">
+    <div class="modal-content" style="width:500px">
+        <span class="close" onclick="closeVoucher()">&times;</span>
+        @using (Html.BeginForm("voucher", "ThanhToan", FormMethod.Post))
+        {
+            <p>Nhập voucher:</p>
+            <input type="text" name="vbc" />
+            <button class="btn btn-success" type="submit">Xác nhận</button>
+        }
+    </div>
+</div>
+
+<script>
+    function openVoucher() {
+        document.getElementById('voucher').style.display = 'block';
+    }
+    function closeVoucher() {
+        document.getElementById('voucher').style.display = 'none';
+    }
+</script>

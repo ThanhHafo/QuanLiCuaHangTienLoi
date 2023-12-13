@@ -1,0 +1,42 @@
+﻿
+@{
+    ViewBag.Title = "ds_khachhang";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<button class="btn btn-success" onclick="window.location.href='@Url.Action("ds_khachhang","CuaHang")'">Danh sách khách hàng</button>
+<button class="btn btn-success" onclick="window.location.href='@Url.Action("sua_khachhang","CuaHang")'">Sửa thông tin khách hàng</button>
+<hr />
+
+<h4>Danh sách khách hàng đã đăng ký thành viên</h4>
+
+<div style="width: 1200px; border: 3px white solid; border-radius:3px 3px;margin:20px;">
+    <table class="table table-hover" style="overflow-y: scroll;margin:10px 0px 0px 50px;">
+        <thead>
+            <tr>
+                <th>STT</th>
+                <th>ID</th>
+                <th>Họ Tên</th>
+                <th>Số điện thoại</th>
+                <th>Điểm</th>
+            </tr>
+        </thead>
+        <tbody>
+            @{
+                int stt = 1;
+            }
+            @foreach (var item in ViewBag.kh)
+            {
+                <tr>
+                    <td>@stt</td>
+                    <td>@item.id</td>
+                    <td>@item.hoten</td>
+                    <td>@item.sdt</td>
+                    <td>@item.tichdiem</td>
+                </tr>
+                stt++;
+            }
+        </tbody>
+    </table>
+</div>
+

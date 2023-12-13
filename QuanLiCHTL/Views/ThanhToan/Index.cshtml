@@ -1,0 +1,39 @@
+﻿@using QuanLiCHTL.Models
+@model IEnumerable<chitiethoadon>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutUser.cshtml";
+}
+
+
+
+<div class="left">
+    @Html.Partial("DsHD")
+</div>
+
+<div class="right">
+    @Html.Partial("tienmat")
+    @Html.Partial("voucher")
+    @Html.Partial("huyhd")
+</div>
+
+<div class="right">
+    @Html.Partial("dangky")
+    @Html.Partial("khachhang")
+    @Html.Partial("timhd")
+</div>
+
+
+<div class="newitem">
+
+</div>
+<div class="kmai">
+    @if(Session["giamgia"] != null)
+    {
+        <p>Đã sử dụng voucher giảm giá: @Session["giamgia"] VNĐ</p>
+    }
+</div>
+<div class="tkhoadon">
+    @Html.Partial("thongkehd")
+</div>
+

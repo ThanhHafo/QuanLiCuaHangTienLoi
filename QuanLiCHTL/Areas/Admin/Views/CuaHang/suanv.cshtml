@@ -1,0 +1,45 @@
+﻿@using QuanLiCHTL.Models;
+@model IEnumerable<nhanvien>
+@{
+    ViewBag.Title = "suanv";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<button class="btn btn-success" onclick="window.location.href='@Url.Action("DsNv","CuaHang")'">Danh sách nhân viên</button>
+<button class="btn btn-success" onclick="window.location.href='@Url.Action("themnv","CuaHang")'">Thêm nhân viên</button>
+<button class="btn btn-success" onclick="window.location.href='@Url.Action("suanv","CuaHang")'">Sửa nhân viên</button>
+<hr />
+
+@using (Html.BeginForm("Suanv", "CuaHang", FormMethod.Post))
+{
+    <p>
+        Tìm nhân viên: @Html.TextBox("id")
+        <input type="submit" class="btn btn-success" value="Tìm kiếm" />
+    </p>
+}
+@using (Html.BeginForm("xacnhansua", "CuaHang", FormMethod.Post))
+{
+    <table class="table table-hover" style="overflow-y: scroll;margin:10px 0px 0px 50px;">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Họ Tên</th>
+                <th>SĐT</th>
+
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td><input type="text" size="10" readonly name="id" value="@item.id" /></td>
+                    <td><input type="text" size="30" name="hoten" value="@item.hoten" /></td>
+                    <td><input type="text" size="30" name="sdt" value="@item.sdt" /></td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+    <input type="submit" class="btn btn-success" value="Xác nhận sửa" />
+}
+

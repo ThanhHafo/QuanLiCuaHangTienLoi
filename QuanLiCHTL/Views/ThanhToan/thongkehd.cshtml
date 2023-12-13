@@ -1,0 +1,29 @@
+﻿
+@{
+    Layout = null;
+}
+
+<div class="ptk">
+    <p style="margin-top:8px;color:red;text-align:left">Số lượng </p>
+    <p style="text-align: right; margin-top: 8px; color: red">@ViewBag.soluong</p>
+</div>
+<div class="ptk">
+    <p style="margin-top: 8px;color:aqua ">Thành tiền</p>
+    <p style="text-align: right; margin-top: 8px; color: aqua">@ViewBag.ttien đ</p>
+</div>
+<div class="ptk">
+    <p style="margin-top: 8px;color:aqua ">Chiết khấu</p>
+    <p style="text-align: right; margin-top: 8px; color: aqua">@ViewBag.ck đ</p>
+</div>
+@if (ViewBag.kh != null) {
+    <div class="ptk">
+        <p style="margin-top: 8px;color:red ">Khách hàng</p>
+        <p style="text-align: right; margin-top: 8px; color: aqua"> @ViewBag.kh - @ViewBag.diem điểm </p>
+    </div>
+}
+<p style="border-bottom:solid grey 1px" />
+<div class="ptk">
+    <p style="margin-top: 8px;color:orange ">Tổng cộng</p>
+    <p style="text-align: right; margin-top: 8px; color: orange">@ViewBag.tcong đ</p>
+
+</div>

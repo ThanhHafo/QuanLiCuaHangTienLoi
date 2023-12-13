@@ -1,0 +1,45 @@
+﻿@using QuanLiCHTL.Models;
+@model IEnumerable<phieunhap>
+@{
+    ViewBag.Title = "phieunhap";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h4>Các đơn hàng đang giao:</h4>
+<div style="width: 1000px; border: 3px white solid; border-radius:3px 3px;margin:20px;">
+    <table class="table table-hover" style="overflow-y: scroll;margin:10px 0px 0px 50px;">
+        <thead>
+            <tr>
+                <th>STT</th>
+                <th>Số lượng</th>
+                <th>Ngày đặt</th>
+                <th>Ngày giao</th>
+                <th>Tổng tiền</th>
+            </tr>
+        </thead>
+        <tbody>
+            @{
+                int stt = 1;
+            }
+            @foreach (var phieunhap in Model)
+            {
+                <tr>
+                    <td>@stt</td>
+                    <td>@phieunhap.soluong</td>
+                    <td>@phieunhap.ngaydat</td>
+                    <td>Đang trên đường giao</td>
+                    <td>@phieunhap.tongtien</td>
+                </tr>
+                stt++;
+            }
+        </tbody>
+    </table>
+</div>
+<h4>Nhập phiếu nhập</h4>
+@using (Html.BeginForm("phieunhap", "CuaHang", FormMethod.Post))
+{
+    <input type="text" name="nbarcode"/>
+    <button type="submit" class="btn btn-success">Nhập hàng</button>
+}
+
+

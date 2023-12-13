@@ -1,0 +1,54 @@
+﻿@using QuanLiCHTL.Models;
+@{
+    ViewBag.Title = "doanhthuthang";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<body>
+    @using (Html.BeginForm("doanhthuthang", "CuaHang", FormMethod.Post))
+    {
+        <input type="text" name="ngay" id="datepicker" placeholder="Chọn ngày">
+        <button type="submit" class="btn btn-success">Tìm</button>
+    }
+</body>
+<h4>Thống kê tháng @ViewBag.thang:</h4>
+<div style="width: 1200px; border: 3px white solid; border-radius:3px 3px;margin:20px;">
+    <table class="table table-hover" style="overflow-y: scroll;margin:10px 0px 0px 50px;">
+        <thead>
+            <tr>
+                <th>Tổng tiền đặt hàng trong tháng</th>
+                <th>Tổng số lượng sản phẩm đã đặt trong tháng</th>
+                <th>Tổng doanh thu trong tháng</th>
+                <th>Số lượng sản phẩm đã bán</th>
+                <th>Số tiền hàng đã hủy trong tháng</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>@ViewBag.tongt</td>
+                <td>@ViewBag.tongsl</td>
+                <td>@ViewBag.tongtt</td>
+                <td>@ViewBag.tongsltt</td>
+                <td>@ViewBag.tonghh</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script>
+    $(function () {
+        $("#datepicker").datepicker({
+            changeMonth: true,
+            changeYear: true,
+            showButtonPanel: true,
+            dateFormat: 'mm/yy', // Định dạng tháng/năm
+            onClose: function (dateText, inst) {
+                $(this).datepicker('setDate', new Date(inst.selectedYear, inst.selectedMonth, 1));
+            }
+        });
+    });
+</script>

@@ -1,0 +1,33 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Login</title>
+    <link rel="stylesheet" type="text/css" href="~/Content/reset.css">
+    <link rel="stylesheet" type="text/css" href="~/Content/structure.css">
+</head>
+
+
+<body>
+    <form action="~/Users/chamcong" method="post" class="box login">
+        <fieldset class="boxBody">
+            <h4 style="text-align:center;font-weight:bold">ĐĂNG NHẬP TÀI KHOẢN NHÂN VIÊN</h4>
+            <label>ID của bạn</label>
+            <input type="text" tabindex="1" name="nUserName" placeholder="Nhập ID của bạn" required>
+            <label> <a href="#" class="rLink" tabindex="5"> Quên mật khẩu? </a>Mật khẩu </label>
+            <input type="password" tabindex="2" name="nPassword" placeholder="Nhập mật khẩu của bạn" required>
+            <p style="font-style:italic; color:red; margin:0px;">@ViewBag.ThongBao</p>
+        </fieldset>
+        <footer>
+            <label><input type="checkbox" tabindex="3">Lưu thông tin</label>
+            <input type="submit" class="btnLogin" value="Đăng nhập" tabindex="4">
+        </footer>
+    </form>
+</body>
+</html>

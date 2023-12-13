@@ -1,0 +1,54 @@
+﻿@using QuanLiCHTL.Models
+@model IEnumerable<sanpham>
+@{
+    ViewBag.Title = "Quanlisanpham";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<button class="btn btn-success" onclick="window.location.href='@Url.Action("Quanlisanpham","CuaHang")'">Quản lí sản phẩm</button>
+<button class="btn btn-success" onclick="window.location.href='@Url.Action("Themsanpham","CuaHang")'">Thêm sản phẩm</button>
+<button class="btn btn-success" onclick="window.location.href='@Url.Action("Suasanpham","CuaHang")'">Sửa sản phẩm</button>
+<hr />
+
+
+
+
+<div style="width: 1000px; border: 3px white solid; border-radius:3px 3px;margin:20px;" id="ds" class="tab-pane fade in active">
+    <div style="margin:20px 0px 0px 20px;">
+        @using (Html.BeginForm("Quanlisanpham", "CuaHang", FormMethod.Get))
+        {
+            <p>
+                Tìm sản phẩm: @Html.TextBox("tim")
+                <input type="submit" class="btn btn-success" value="Tìm kiếm" />
+            </p>
+        }
+
+        <table class="table table-hover" style="overflow-y: scroll;margin:10px 0px 0px 50px;">
+            <thead>
+                <tr>
+                    <th></th>
+                    <th>Barcode</th>
+                    <th>Tên sản phẩm</th>
+                    <th>Mô tả</th>
+                    <th>Giá</th>
+                    <th>Tồn kho</th>
+                    <th style="width:150px;"></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var sanpham in Model)
+                {
+                    <tr>
+                        <td></td>
+                        <td>@sanpham.barcode</td>
+                        <td>@sanpham.tensp</td>
+                        <td>@sanpham.mota</td>
+                        <td>@sanpham.gia</td>
+                        <td>@sanpham.soluong</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+
+    </div>
+</div>

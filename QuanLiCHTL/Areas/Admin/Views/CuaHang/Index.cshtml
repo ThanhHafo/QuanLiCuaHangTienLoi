@@ -1,0 +1,32 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<img class="img-store" src="~/Images/24h-store.png" />
+<h4>Thống kê hiện tại</h4>
+<div class="statistic">
+    <div class="statistics-contain">
+        <img class="icon" src="~/Images/money-icon.png" />
+        <h2>@ViewBag.dthu</h2>
+        <h6>Doanh thu hôm nay</h6>
+    </div>
+    <div class="statistics-contain">
+        <img class="icon" src="~/Images/bill-icon.png" />
+        <h2>@ViewBag.sobill</h2>
+        <h6>Tổng bill hôm nay</h6>
+    </div>
+    <div class="statistics-contain">
+        <img class="icon" src="~/Images/bill-cancel.png" />
+        <h2>2</h2>
+        <h6>Tổng bill huỷ</h6>
+    </div>
+    <div class="statistics-contain">
+        <img class="icon" src="~/Images/staff.png" />
+        <h2>@ViewBag.nv</h2>
+        <h6>Số lượng nhân viên</h6>
+    </div>
+</div>
+
+

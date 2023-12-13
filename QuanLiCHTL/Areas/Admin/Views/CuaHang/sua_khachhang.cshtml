@@ -1,0 +1,44 @@
+﻿@using QuanLiCHTL.Models;
+@model IEnumerable<khachhang>
+@{
+    ViewBag.Title = "sua_khachhang";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<button class="btn btn-success" onclick="window.location.href='@Url.Action("ds_khachhang","CuaHang")'">Danh sách khách hàng</button>
+<button class="btn btn-success" onclick="window.location.href='@Url.Action("sua_khachhang","CuaHang")'">Sửa thông tin khách hàng</button>
+<hr />
+
+@using (Html.BeginForm("sua_khachhang", "CuaHang", FormMethod.Get))
+{
+    <p>
+        Tìm nhân viên: @Html.TextBox("sdt")
+        <input type="submit" class="btn btn-success" value="Tìm kiếm" />
+    </p>
+}
+
+@using (Html.BeginForm("sua_khachhang", "CuaHang", FormMethod.Post))
+{
+    <table class="table table-hover" style="overflow-y: scroll;margin:10px 0px 0px 50px;">
+        <thead>
+            <tr>
+                <th>Số điện thoại</th>
+                <th>Họ Tên</th>
+                <th>Điểm</th>
+
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td><input type="text" size="10" readonly name="sdt" value="@item.sdt" /></td>
+                    <td><input type="text" size="30" name="hoten" value="@item.hoten" /></td>
+                    <td><input type="text" size="30" name="diem" value="@item.tichdiem" /></td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+    <input type="submit" class="btn btn-success" value="Xác nhận sửa" />
+}

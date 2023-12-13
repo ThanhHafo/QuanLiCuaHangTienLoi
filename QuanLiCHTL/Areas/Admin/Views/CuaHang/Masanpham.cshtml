@@ -1,0 +1,39 @@
+﻿@using QuanLiCHTL.Models;
+@model IEnumerable<inbarcode>
+@{
+    ViewBag.Title = "Masanpham";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+@using (Html.BeginForm("Masanpham", "CuaHang", FormMethod.Post))
+{
+    <span>Nhập Barcode:</span>
+    <input type="text" size="20" name="inbarcode" />
+    <button type="submit" class="btn btn-success">Thêm</button>
+}
+
+<table class="table table-hover" style="overflow-y: scroll;margin:10px 0px 0px 50px;">
+    <thead>
+        <tr>
+            <th>STT</th>
+            <th>Barcode</th>
+            <th>Tên sản phẩm</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var inbarcode in Model)
+        {
+            <tr>
+                <td>@inbarcode.stt</td>
+                <td>@inbarcode.barcode</td>
+                <td>@inbarcode.tensp</td>
+            </tr>
+        }
+    </tbody>
+</table>
+@using (Html.BeginForm("Xoasp", "CuaHang", FormMethod.Post))
+{
+    <input type="hidden" size="20" name="xoain" value="inbarcode" />
+    <button type="submit" class="btn btn-success">In</button>
+}
+

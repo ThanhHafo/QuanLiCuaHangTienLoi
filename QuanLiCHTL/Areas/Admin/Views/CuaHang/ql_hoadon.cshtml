@@ -1,0 +1,115 @@
+﻿@using QuanLiCHTL.Models
+@model IEnumerable<chitiethoadon>
+@{
+    ViewBag.Title = "ql_hoadon";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+
+@using (Html.BeginForm("ql_hoadon", "CuaHang", FormMethod.Post))
+{
+    <input type="text" name="ngay" id="datepicker" placeholder="Chọn ngày">
+    <button type="submit" class="btn btn-success">Tìm</button>
+}
+<p>Hóa đơn ngày @ViewBag.ngay</p>
+<div style=" border: 3px white solid; border-radius:3px 3px;margin:20px;">
+    <table class="table table-hover" style="overflow-y: scroll; margin: 10px 0px 0px 50px;">
+        <thead>
+            <tr>
+                <th>STT</th>
+                <th>Id</th>
+                <th>Ngày thanh toán</th>
+                <th>Số lượng sản phẩm</th>
+                <th>Số tiền</th>
+                <th>Voucher</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @{
+                int stt = 1;
+            }
+            @foreach (var item in ViewBag.hd)
+            {
+                <tr>
+                    <td>@stt</td>
+                    <td>@item.id</td>
+                    <td>@item.ngaythanhtoan</td>
+                    <td>@item.soluong</td>
+                    <td>@item.tongtien</td>
+                    <td>@item.voucher</td>
+                    @using (Html.BeginForm("ql_hoadon", "CuaHang", FormMethod.Post))
+                    {
+                        <td><input type="hidden" name="idhd" value="@item.id" /><button type="submit">Xem chi tiết</button></td>
+                    }
+                </tr>
+                stt++;
+            }
+        </tbody>
+    </table>
+</div>
+@if (Model != null)
+{
+    <button id="myButton" onclick="openModal()"></button>
+    <div id="myModal" class="modal">
+        <div class="modal-content" style="width:900px">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <p>Chi tiết hóa đơn</p>
+            <table class="table table-hover" style="overflow-y: scroll; margin: 10px 0px 0px 50px;">
+                <thead>
+                    <tr>
+                        <th>STT</th>
+                        <th>Barcode</th>
+                        <th>Tên sản phẩm</th>
+                        <th>Số lượng</th>
+                        <th>Giá</th>
+                        <th>Thành tiền</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @if (Model != null)
+                    {
+                        int stt2 = 1;
+                        foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>@stt2</td>
+                                <td>@item.barcode</td>
+                                <td>@item.tensp</td>
+                                <td>@item.soluong</td>
+                                <td>@item.gia</td>
+                                <td>@item.thanhtien</td>
+                            </tr>
+                            stt++;
+                        }
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+}
+
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script>
+    function openModal() {
+        document.getElementById('myModal').style.display = 'block';
+    }
+    function closeModal() {
+        document.getElementById('myModal').style.display = 'none';
+    }
+    window.onload = function () {
+        // Tự động click vào button khi trang được tải
+        document.getElementById('myButton').click();
+        document.getElementById('myButton').style.display = 'none';
+    };
+    $(function () {
+        // Gắn datepicker cho input với id là 'datepicker'
+        $("#datepicker").datepicker({
+            dateFormat: "dd/mm/yy", // Định dạng ngày tháng năm
+            changeMonth: true,      // Cho phép chọn tháng
+            changeYear: true        // Cho phép chọn năm
+        });
+    });
+</script>

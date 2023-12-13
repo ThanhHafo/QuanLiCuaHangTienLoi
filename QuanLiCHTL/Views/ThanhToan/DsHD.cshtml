@@ -1,0 +1,73 @@
+﻿
+@{
+    Layout = null;
+}
+
+<table class="table table-hover" style="overflow-y: scroll;margin:10px 0px 0px 10px;width:1050px">
+    <thead style="background-color: #612794;color:white">
+        <tr>
+            <th>
+                @using (Html.BeginForm("DsHD", "ThanhToan", FormMethod.Post))
+                {
+                    <input type="text" name="hdbc" placeholder="Nhập barcode" style="border-radius:4px 4px;height:25px;" />
+                    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+                }
+            </th>
+            <th>Tên sản phẩm</th>
+            <th>Giá</th>
+            <th>Số lượng</th>
+            <th>Thành tiền</th>
+            <th></th>
+            <th style="width:150px;"></th>
+        </tr>
+    </thead>
+    <tbody style="border:solid 1px;">
+        @foreach (var chitiethoadon in Model)
+        {
+            <tr>
+                @using (Html.BeginForm("capnhat", "ThanhToan", FormMethod.Post))
+                {
+                    <td>@chitiethoadon.barcode<input type="hidden" name="bc" value="@chitiethoadon.barcode" /></td>
+                    <td>@chitiethoadon.tensp</td>
+                    <td>@chitiethoadon.gia</td>
+                    <td class="quantity-container">
+                        <button class="quantity-button" onclick="decreaseQuantity(this)">-</button>
+                        <input type="text" class="quantity-input" name="sl" id="quantity" value="@chitiethoadon.soluong">
+                        <button class="quantity-button" onclick="increaseQuantity(this)">+</button>
+                    </td>
+                    <td>@chitiethoadon.thanhtien</td>
+                }
+                @using (Html.BeginForm("Xoasp", "ThanhToan", FormMethod.Post))
+                {
+                    <td><button type="submit">X</button><input type="hidden" name="xoa" value="@chitiethoadon.barcode" /></td>
+                }
+
+            </tr>
+        }
+    </tbody>
+</table>
+
+<script>
+    function decreaseQuantity(button) {
+        var quantityInput = button.parentNode.querySelector('.quantity-input');
+        var currentQuantity = parseInt(quantityInput.value, 10);
+
+        if (currentQuantity > 1) {
+            quantityInput.value = currentQuantity - 1;
+        }
+    }
+
+    function increaseQuantity(button) {
+        var quantityInput = button.parentNode.querySelector('.quantity-input');
+        var currentQuantity = parseInt(quantityInput.value, 10);
+
+        quantityInput.value = currentQuantity + 1;
+    }
+    $(document).ready(function () {
+        $("#barcodeInput").keypress(function (e) {
+            if (e.which === 13) {
+                $(this).closest('form').submit();
+            }
+        });
+    });
+</script>

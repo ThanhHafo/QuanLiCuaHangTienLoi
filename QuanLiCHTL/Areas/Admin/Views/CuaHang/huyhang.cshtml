@@ -1,0 +1,63 @@
+﻿@using QuanLiCHTL.Models;
+@model IEnumerable<huyhang>
+@{
+    ViewBag.Title = "huyhang";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h4>Danh sách sản phẩm cần hủy hôm nay</h4>
+<h4>Hãy kiểm tra sản phẩm</h4>
+
+@{
+    // Đặt múi giờ của Việt Nam
+    var timeZone = TimeZoneInfo.FindSystemTimeZoneById("SE Asia Standard Time");
+    var currentTimeVN = TimeZoneInfo.ConvertTimeFromUtc(DateTime.UtcNow, timeZone);
+}
+<div style="border: 3px white solid; border-radius:3px 3px;margin:20px;">
+    <table class="table table-hover" style="overflow-y: scroll;margin:10px 0px 0px 10px;width:1050px">
+        <thead>
+            <tr>
+                <th>STT</th>
+                <th>Barcode</th>
+                <th>Tên sản phẩm</th>
+                <th>HSD</th>
+                <th>Số lượng</th>
+                <th>Số ngày còn lại</th>
+                <th>Tình trạng</th>
+                <th>Số lượng đã hủy</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                int stt = 1;
+                <tr>
+                    <td>@stt</td>
+                    <td>@item.barcode</td>
+                    <td>@item.tensp</td>
+                    <td>@item.hsd.Value.Day/@item.hsd.Value.Month/@item.hsd.Value.Year</td>
+                    <td>@item.soluong</td>
+                    <td>
+                        @{
+                            var daysRemaining = (item.hsd.Value.Date - currentTimeVN.Date).Days;
+                        }
+                        @daysRemaining
+                    </td>
+                    <td>@item.tinhtrang</td>
+                    <td>@item.soluongdahuy</td>
+                </tr>
+                stt++;
+            }
+        </tbody>
+    </table>
+</div>
+
+<div style="border: 3px white solid; border-radius:3px 3px;margin:20px;">
+    <h4>Nhập sản phẩm hủy</h4>
+    @using (Html.BeginForm("xacnhanhh", "CuaHang", FormMethod.Post))
+    {
+        <span>Nhập barcode:</span><input type="text" name="bch" />
+        <span>Nhập số lượng hủy:</span><input type="text" name="slh" />
+        <button type="submit">Xác nhận hủy</button>
+    }
+</div>

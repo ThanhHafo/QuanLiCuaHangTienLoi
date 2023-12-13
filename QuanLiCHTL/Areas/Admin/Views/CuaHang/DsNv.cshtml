@@ -1,0 +1,37 @@
+﻿
+@{
+    ViewBag.Title = "DsNv";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<button class="btn btn-success" onclick="window.location.href='@Url.Action("DsNv","CuaHang")'">Danh sách nhân viên</button>
+<button class="btn btn-success" onclick="window.location.href='@Url.Action("themnv","CuaHang")'">Thêm nhân viên</button>
+<button class="btn btn-success" onclick="window.location.href='@Url.Action("suanv","CuaHang")'">Sửa nhân viên</button>
+<hr />
+<h4>Danh sách nhân viên</h4>
+<div style="border: 3px white solid; border-radius:3px 3px;margin:20px;">
+    <table class="table table-hover" style="overflow-y: scroll;margin:10px 0px 0px 10px;width:1050px">
+        <thead>
+            <tr>
+                <th>STT</th>
+                <th>ID</th>
+                <th>Họ Tên</th>
+                <th>SĐT</th>
+            </tr>
+        </thead>
+        <tbody>
+            @{ int stt = 1;}
+            @foreach (var item in ViewBag.ds)
+            {
+
+                <tr>
+                    <td>@stt</td>
+                    <td>@item.id</td>
+                    <td>@item.hoten</td>
+                    <td>@item.sdt</td>
+                </tr>
+                stt++;
+            }
+        </tbody>
+    </table>
+</div>

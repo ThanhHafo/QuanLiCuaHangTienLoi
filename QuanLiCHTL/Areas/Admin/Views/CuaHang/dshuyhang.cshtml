@@ -1,0 +1,92 @@
+﻿@using QuanLiCHTL.Models;
+@model IEnumerable<huyhang>
+@{
+    ViewBag.Title = "huyhang";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<div style="border: 3px white solid; border-radius:3px 3px;margin:20px;">
+    @using (Html.BeginForm("ImportExcel", "CuaHang", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+        <div>
+            <label for="file">Chọn file Excel:</label>
+            <input type="file" name="file" id="file" required />
+            <button type="submit">Xác nhận</button>
+        </div>
+    }
+    @if (!string.IsNullOrEmpty(ViewBag.Message))
+    {
+        <div style="color: green; font-weight: bold; margin-top: 10px;">@ViewBag.Message</div>
+    }
+
+    @if (!string.IsNullOrEmpty(ViewBag.Error))
+    {
+        <div style="color: red; font-weight: bold; margin-top: 10px;">@ViewBag.Error</div>
+    }
+</div>
+
+<div style="border: 3px white solid; border-radius:3px 3px;margin:20px;">
+    @{
+        // Đặt múi giờ của Việt Nam
+        var timeZone = TimeZoneInfo.FindSystemTimeZoneById("SE Asia Standard Time");
+        var currentTimeVN = TimeZoneInfo.ConvertTimeFromUtc(DateTime.UtcNow, timeZone);
+    }
+    @using (Html.BeginForm("dshuyhang", "CuaHang", FormMethod.Post))
+    {
+        <input type="text" name="ngay" id="datepicker" placeholder="Chọn tháng">
+        <button type="submit" class="btn btn-success">Tìm</button>
+    }
+    <h4>Danh sách sản phẩm sắp hết HSD tháng này</h4>
+    <table class="table table-hover" style="overflow-y: scroll;margin:10px 0px 0px 10px;width:1050px">
+        <thead>
+            <tr>
+                <th>STT</th>
+                <th>Barcode</th>
+                <th>Tên sản phẩm</th>
+                <th>HSD</th>
+                <th>Số lượng</th>
+                <th>Số ngày còn lại</th>
+                <th>Tình trạng</th>
+                <th>Số lượng đã hủy</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.id</td>
+                    <td>@item.barcode</td>
+                    <td>@item.tensp</td>
+                    <td>@item.hsd.Value.Day/@item.hsd.Value.Month/@item.hsd.Value.Year</td>
+                    <td>@item.soluong</td>
+                    <td>
+                        @{
+                            var daysRemaining = (item.hsd.Value.Date - currentTimeVN.Date).Days;
+                        }
+                        @daysRemaining
+                    </td>
+                    <td>@item.tinhtrang</td>
+                    <td>@item.soluongdahuy</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script>
+    $(function () {
+        $("#datepicker").datepicker({
+            changeMonth: true,
+            changeYear: true,
+            showButtonPanel: true,
+            dateFormat: 'mm/yy', // Định dạng tháng/năm
+            onClose: function (dateText, inst) {
+                $(this).datepicker('setDate', new Date(inst.selectedYear, inst.selectedMonth, 1));
+            }
+        });
+    });
+</script>

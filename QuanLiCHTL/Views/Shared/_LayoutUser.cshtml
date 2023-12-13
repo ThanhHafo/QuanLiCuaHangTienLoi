@@ -1,0 +1,54 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="~/Scripts/mycss.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="~/Content/reset.css">
+    <link rel="stylesheet" type="text/css" href="~/Content/structure.css">
+</head>
+
+<body style="background-color:#bbcfcc">
+    <div class="top">
+        <div id="current-time" style="font-size:15px;color:white;float:left;margin:10px"></div>
+        <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+        <script>
+            function updateDateTime() {
+                var currentTimeElement = document.getElementById('current-time');
+                var now = new Date();
+                var formattedTime = now.toLocaleString();
+                currentTimeElement.textContent = formattedTime;
+            }
+            setInterval(updateDateTime, 1000);
+            updateDateTime();
+        </script>
+
+        <div style="float:left" class="textwhite">
+            <span style="font-size: 15px; margin: 10px;">Nhân viên:</span>
+            @if (Session["nvien"] != null)
+            {
+                @Session["nvien"]
+            }
+        </div>
+
+        <div class="textwhite" style="float:right;font-size:15px;margin:10px;">
+            <a style="color:white" href="@Url.Action("ketca","Users")">Kết ca</a>
+        </div>
+
+        <div class="textwhite" style="float: right; font-size: 15px; margin: 10px;">
+            <a style="color:white" href="@Url.Action("chamcong","Users")">Chấm công</a>
+        </div>
+
+
+    </div>
+    <div class="thanhtoan">
+        @RenderBody()
+    </div>
+
+</body>
+
+</html>

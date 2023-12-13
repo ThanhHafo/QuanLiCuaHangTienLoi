@@ -1,0 +1,44 @@
+﻿
+@{
+    Layout = null;
+}
+
+<button class="buttontt" onclick="openTim()">Tìm Hoá Đơn</button>
+<div id="timhd" class="modal">
+    <div class="modal-content" style="width:900px">
+        <span class="close" onclick="closeTim()">&times;</span>
+        <table class="table table-hover" style="overflow-y: scroll;margin:10px 0px 0px 50px;">
+            <thead>
+                <tr>
+                    <th></th>
+                    <th>Id</th>
+                    <th>Số lượng</th>
+                    <th>Tổng tiền</th>
+                    <th>Ngày thanh toán</th>
+                    <th style="width:150px;"></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var hd in ViewBag.timhd)
+                {
+                    <tr>
+                        <td></td>
+                        <td>@hd.id</td>
+                        <td>@hd.soluong</td>
+                        <td>@hd.tongtien</td>
+                        <td>@hd.ngaythanhtoan</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<script>
+    function openTim() {
+        document.getElementById('timhd').style.display = 'block';
+    }
+    function closeTim() {
+        document.getElementById('timhd').style.display = 'none';
+    }
+</script>

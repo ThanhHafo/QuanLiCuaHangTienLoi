@@ -1,0 +1,47 @@
+﻿
+@{
+    ViewBag.Title = "ql_voucher";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<button class="btn btn-success" onclick="window.location.href='@Url.Action("ds_voucher","CuaHang")'">Danh sách Voucher</button>
+<button class="btn btn-success" onclick="window.location.href='@Url.Action("them_voucher","CuaHang")'">Thêm Voucher</button>
+<button class="btn btn-success" onclick="window.location.href='@Url.Action("sua_voucher","CuaHang")'">Sửa Voucher</button>
+<button class="btn btn-success" onclick="window.location.href='@Url.Action("xoa_voucher","CuaHang")'">Xoá Voucher</button>
+<hr />
+
+<h4>Danh sách Voucher của Cửa Hàng</h4>
+<div style="width: 1000px; border: 3px white solid; border-radius:3px 3px;margin:20px;">
+    <table class="table table-hover" style="overflow-y: scroll;margin:10px 0px 0px 50px;">
+        <thead>
+            <tr>
+                <th>STT</th>
+                <th>Barcode</th>
+                <th>Mô tả</th>
+                <th>Giảm giá</th>
+                <th>Ngày sử dụng</th>
+                <th>Hạn sử dụng</th>
+                <th>Lượt sử dụng</th>
+            </tr>
+        </thead>
+        <tbody>
+            @{
+                int stt = 1;
+            }
+            @foreach (var item in ViewBag.vch)
+            {
+                <tr>
+                    <td>@stt</td>
+                    <td>@item.barcode</td>
+                    <td>@item.mota</td>
+                    <td>@item.giamgia</td>
+                    <td>@item.ngaysudung</td>
+                    <td>@item.hsd</td>
+                    <td>@item.luotsudung</td>
+                </tr>
+                stt++;
+            }
+        </tbody>
+    </table>
+</div>
+

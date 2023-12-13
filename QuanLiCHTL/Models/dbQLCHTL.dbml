@@ -1,0 +1,180 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="QLCHTL" Class="dbQLCHTLDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="WebSettings" ConnectionString="Data Source=ThanhHao\SQLEXPRESS;Initial Catalog=QLCHTL;Integrated Security=True" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="QLCHTLConnectionString" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.ADMIN" Member="ADMINs">
+    <Type Name="ADMIN">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="taikhoan" Type="System.String" DbType="VarChar(15)" CanBeNull="true" />
+      <Column Name="matkhau" Type="System.String" DbType="VarChar(15)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.dathang" Member="dathangs">
+    <Type Name="dathang">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="idphieunhap" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="id_ncc" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="barcode" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="tensp" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="soluong" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="gia" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Association Name="nhacungcap_dathang" Member="nhacungcap" ThisKey="id_ncc" OtherKey="id" Type="nhacungcap" IsForeignKey="true" />
+      <Association Name="phieunhap_dathang" Member="phieunhap" ThisKey="idphieunhap" OtherKey="id" Type="phieunhap" IsForeignKey="true" />
+      <Association Name="sanpham_dathang" Member="sanpham" ThisKey="barcode" OtherKey="barcode" Type="sanpham" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.nhacungcap" Member="nhacungcaps">
+    <Type Name="nhacungcap">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="ten" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="diachi" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="sdt" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="nhacungcap_dathang" Member="dathangs" ThisKey="id" OtherKey="id_ncc" Type="dathang" />
+      <Association Name="nhacungcap_sanpham_ncc" Member="sanpham_nccs" ThisKey="id" OtherKey="id_ncc" Type="sanpham_ncc" />
+    </Type>
+  </Table>
+  <Table Name="dbo.nhanvien" Member="nhanviens">
+    <Type Name="nhanvien">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="hoten" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="sdt" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="matkhau" Type="System.String" DbType="VarChar(15)" CanBeNull="true" />
+      <Association Name="nhanvien_chamcong" Member="chamcongs" ThisKey="id" OtherKey="idnv" Type="chamcong" />
+      <Association Name="nhanvien_huyhoadon" Member="huyhoadons" ThisKey="id" OtherKey="idnv" Type="huyhoadon" />
+      <Association Name="nhanvien_hoadon" Member="hoadons" ThisKey="id" OtherKey="idnv" Type="hoadon" />
+    </Type>
+  </Table>
+  <Table Name="dbo.phieunhap" Member="phieunhaps">
+    <Type Name="phieunhap">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="barcode" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="soluong" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="ngaydat" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="ngaynhap" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="tongtien" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Association Name="phieunhap_dathang" Member="dathangs" ThisKey="id" OtherKey="idphieunhap" Type="dathang" />
+    </Type>
+  </Table>
+  <Table Name="dbo.sanpham" Member="sanphams">
+    <Type Name="sanpham">
+      <Column Name="barcode" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="tensp" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="mota" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="gia" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="soluong" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="sanpham_dathang" Member="dathangs" ThisKey="barcode" OtherKey="barcode" Type="dathang" />
+      <Association Name="sanpham_inbarcode" Member="inbarcodes" ThisKey="barcode" OtherKey="barcode" Type="inbarcode" />
+      <Association Name="sanpham_lichsu" Member="lichsus" ThisKey="barcode" OtherKey="barcode" Type="lichsu" />
+      <Association Name="sanpham_huyhang" Member="huyhangs" ThisKey="barcode" OtherKey="barcode" Type="huyhang" />
+      <Association Name="sanpham_chitiethoadon" Member="chitiethoadons" ThisKey="barcode" OtherKey="barcode" Type="chitiethoadon" />
+      <Association Name="sanpham_ncc_sanpham" Member="sanpham_ncc" ThisKey="barcode" OtherKey="barcode" Type="sanpham_ncc" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.sanpham_ncc" Member="sanpham_nccs">
+    <Type Name="sanpham_ncc">
+      <Column Name="barcode" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="tensp" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="dongia" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="id_ncc" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="sanpham_ncc_sanpham" Member="sanpham" ThisKey="barcode" OtherKey="barcode" Type="sanpham" Cardinality="One" />
+      <Association Name="nhacungcap_sanpham_ncc" Member="nhacungcap" ThisKey="id_ncc" OtherKey="id" Type="nhacungcap" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.inbarcode" Member="inbarcodes">
+    <Type Name="inbarcode">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="barcode" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="tensp" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Association Name="sanpham_inbarcode" Member="sanpham" ThisKey="barcode" OtherKey="barcode" Type="sanpham" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.lichsu" Member="lichsus">
+    <Type Name="lichsu">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="barcode" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="ngaycapnhat" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="loaicapnhat" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="tensp" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Association Name="sanpham_lichsu" Member="sanpham" ThisKey="barcode" OtherKey="barcode" Type="sanpham" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.huyhang" Member="huyhangs">
+    <Type Name="huyhang">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="barcode" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="tensp" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="hsd" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="tinhtrang" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="soluong" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="soluongdahuy" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="dongia" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Association Name="sanpham_huyhang" Member="sanpham" ThisKey="barcode" OtherKey="barcode" Type="sanpham" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.chamcong" Member="chamcongs">
+    <Type Name="chamcong">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="idnv" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="giovaolam" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="giorave" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="ketca" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="doanhthu" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Association Name="nhanvien_chamcong" Member="nhanvien" ThisKey="idnv" OtherKey="id" Type="nhanvien" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.huyhoadon" Member="huyhoadons">
+    <Type Name="huyhoadon">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="ngayhuy" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="tongtien" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="lydo" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="idnv" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="huyhoadon_chitiethoadon" Member="chitiethoadons" ThisKey="id" OtherKey="id_huy" Type="chitiethoadon" />
+      <Association Name="nhanvien_huyhoadon" Member="nhanvien" ThisKey="idnv" OtherKey="id" Type="nhanvien" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.voucher" Member="vouchers">
+    <Type Name="voucher">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="barcode" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="mota" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="giamgia" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="ngaysudung" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="hsd" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="luotsudung" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.chitiethoadon" Member="chitiethoadons">
+    <Type Name="chitiethoadon">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="barcode" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="tensp" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="soluong" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="gia" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="thanhtien" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="id_hd" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="id_huy" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="sanpham_chitiethoadon" Member="sanpham" ThisKey="barcode" OtherKey="barcode" Type="sanpham" IsForeignKey="true" />
+      <Association Name="huyhoadon_chitiethoadon" Member="huyhoadon" ThisKey="id_huy" OtherKey="id" Type="huyhoadon" IsForeignKey="true" />
+      <Association Name="hoadon_chitiethoadon" Member="hoadon" ThisKey="id_hd" OtherKey="id" Type="hoadon" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.hoadon" Member="hoadons">
+    <Type Name="hoadon">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="ngaythanhtoan" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="tongtien" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="soluong" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="idnv" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="voucher" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="hoadon_chitiethoadon" Member="chitiethoadons" ThisKey="id" OtherKey="id_hd" Type="chitiethoadon" />
+      <Association Name="nhanvien_hoadon" Member="nhanvien" ThisKey="idnv" OtherKey="id" Type="nhanvien" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.khachhang" Member="khachhangs">
+    <Type Name="khachhang">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="hoten" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="sdt" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="tichdiem" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </Type>
+  </Table>
+</Database>

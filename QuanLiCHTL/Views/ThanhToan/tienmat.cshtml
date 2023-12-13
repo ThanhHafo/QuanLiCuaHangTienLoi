@@ -1,0 +1,45 @@
+﻿
+@{
+    Layout = null;
+}
+
+<button class="buttontt" onclick="openThanhtoan()">Tiền Mặt</button>
+<div id="thanhtoan" class="modal">
+    <div class="modal-content" style="width:500px">
+        <span class="close" onclick="closeThanhtoan()">&times;</span>
+        @using (Html.BeginForm("thanhtoanhd", "ThanhToan", FormMethod.Post))
+        {
+            <p>Số tiền cần thanh toán:</p>
+            <input type="text" name="tientt" id="input3" readonly />
+
+            <p for="input1">Nhập số tiền:</p>
+            <input type="text" id="input1" name="tienkh" oninput="updateInput2(this.value)" />
+
+            <p for="input2">Tiền dư:</p>
+            <input type="text" id="input2" name="tiendu" readonly />
+            <hr />
+
+            <button type="submit">Thanh toán</button>
+        }
+    </div>
+</div>
+
+<script>
+    function updateInput2(value) {
+        var numberInput1 = parseFloat(value);
+        var myData = @Html.Raw(Json.Encode(ViewBag.tcong));
+        document.getElementById('input3').value = myData;
+        if (!isNaN(numberInput1)) {
+            var result = numberInput1 - myData;
+            document.getElementById('input2').value = result;
+        } else {
+            document.getElementById('input2').value = 'Không phải số';
+        }
+    }
+    function openThanhtoan() {
+        document.getElementById('thanhtoan').style.display = 'block';
+    }
+    function closeThanhtoan() {
+        document.getElementById('thanhtoan').style.display = 'none';
+    }
+</script>

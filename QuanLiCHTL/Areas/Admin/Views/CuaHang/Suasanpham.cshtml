@@ -1,0 +1,74 @@
+﻿@using QuanLiCHTL.Models;
+@model IEnumerable<sanpham>
+@{
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<button class="btn btn-success" onclick="window.location.href='@Url.Action("Quanlisanpham","CuaHang")'">Quản lí sản phẩm</button>
+<button class="btn btn-success" onclick="window.location.href='@Url.Action("Themsanpham","CuaHang")'">Thêm sản phẩm</button>
+<button class="btn btn-success" onclick="window.location.href='@Url.Action("Suasanpham","CuaHang")'">Sửa sản phẩm</button>
+
+@using (Html.BeginForm("Suasanpham", "CuaHang", FormMethod.Post))
+{
+    <p>
+        Tìm sản phẩm: @Html.TextBox("sua")
+        <input type="submit" class="btn btn-success" value="Tìm kiếm" />
+    </p>
+}
+@using (Html.BeginForm("Sua", "CuaHang", FormMethod.Post))
+{
+    <table class="table table-hover" style="overflow-y: scroll;margin:10px 0px 0px 50px;">
+        <thead>
+            <tr>
+                <th>Barcode sản phẩm</th>
+                <th>Tên sản phẩm</th>
+                <th>Mô tả</th>
+                <th>Giá</th>
+                <th>Tồn kho</th>
+                <th style="width:150px;"></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var sanpham in Model)
+            {
+                <tr>
+                    <td><input type="text" size="10" readonly name="csbarcode" value="@sanpham.barcode" /></td>
+                    <td><input type="text" size="30" name="cstensp" value="@sanpham.tensp" /></td>
+                    <td><input type="text" size="30" name="csmota" value="@sanpham.mota" /></td>
+                    <td><input type="text" size="10" name="csgia" value="@sanpham.gia" /></td>
+                    <td><input type="text" size="5" name="cstonkho" value="@sanpham.soluong" /></td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+    <input type="submit" class="btn btn-success" value="Xác nhận sửa" />
+}
+<div style="width: 1000px; border: 3px white solid; border-radius:3px 3px;margin:20px;">
+    <h4>Lịch sử sửa sản phẩm gần đây</h4>
+    <table class="table table-hover" style="overflow-y: scroll;margin:10px 0px 0px 50px;">
+        <thead>
+            <tr>
+                <th></th>
+                <th>Barcode</th>
+                <th>Tên sản phẩm</th>
+                <th>Ngày sửa</th>
+                <th style="width:150px;"></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var sanpham in ViewBag.dssua)
+            {
+                <tr>
+                    <td></td>
+                    <td>@sanpham.barcode</td>
+                    <td>@sanpham.tensp</td>
+                    <td>@sanpham.ngaycapnhat</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+
+

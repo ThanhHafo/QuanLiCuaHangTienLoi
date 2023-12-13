@@ -1,0 +1,26 @@
+﻿
+@{
+    ViewBag.Title = "Ql_Nv";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<button class="btn btn-success" onclick="window.location.href='@Url.Action("DsNv","CuaHang")'">Danh sách nhân viên</button>
+<button class="btn btn-success" onclick="window.location.href='@Url.Action("themnv","CuaHang")'">Thêm nhân viên</button>
+<button class="btn btn-success" onclick="window.location.href='@Url.Action("suanv","CuaHang")'">Sửa nhân viên</button>
+<hr />
+<h4>Thêm nhân viên mới</h4>
+<div style="display: flex; justify-content: center; align-items: center;width:500px; border: 3px white solid; border-radius: 3px 3px; margin: 20px;">
+    @using (Html.BeginForm("themnv", "CuaHang", FormMethod.Post))
+    {
+        <p>Nhập ID nhân viên:</p>
+        <input type="text" name="id" required />
+        <p>Nhập Họ Tên nhân viên</p>
+        <input type="text" name="hoten" required />
+        <p>Nhập SĐT nhân viên</p>
+        <input type="text" name="sdt" required />
+        <p>Nhập mật khẩu nhân viên</p>
+        <input type="text" name="mk" required />
+        <hr />
+        <button type="submit" class="btn btn-success">Thêm</button>
+    }
+</div>

@@ -1,0 +1,38 @@
+﻿
+@{
+    ViewBag.Title = "them_voucher";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<button class="btn btn-success" onclick="window.location.href='@Url.Action("ds_voucher","CuaHang")'">Danh sách Voucher</button>
+<button class="btn btn-success" onclick="window.location.href='@Url.Action("them_voucher","CuaHang")'">Thêm Voucher</button>
+<button class="btn btn-success" onclick="window.location.href='@Url.Action("sua_voucher","CuaHang")'">Sửa Voucher</button>
+<button class="btn btn-success" onclick="window.location.href='@Url.Action("xoa_voucher","CuaHang")'">Xoá Voucher</button>
+<hr />
+
+<h4>Thêm Voucher</h4>
+<div style="width: 1000px; border: 3px white solid; border-radius:3px 3px;margin:20px;">
+    @using (Html.BeginForm("them_voucher", "CuaHang", FormMethod.Post))
+    {
+        <p>Nhập barcode voucher</p>
+        <input type="text" name="vbc" />
+
+        <p>Nhập mô tả voucher </p>
+        <input type="text" name="vmt" />
+
+        <p>Nhập giảm giá cho voucher</p>
+        <input type="text" name="vgg" />
+
+        <p>Nhập ngày sử dụng cho voucher</p>
+        <input type="text" name="vnsd" />
+
+        <p>Nhập hạn sử dụng cho voucher</p>
+        <input type="text" name="vhsd" />
+
+        <p>Nhập lượt sử dụng voucher</p>
+        <input type="text" name="vlsd" />
+
+        <hr />
+        <button type="submit" class="btn btn-success">Thêm</button>
+    }
+</div>
